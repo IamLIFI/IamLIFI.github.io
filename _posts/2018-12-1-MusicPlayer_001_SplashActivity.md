@@ -16,7 +16,7 @@ tags:                               #标签
 
 ## Splash Activity界面思路
 > 主要思路
-![pic1](../img/12-1-1/1.png)
+![pic1](../img/1.png)
 
 延迟显示的方式：**使用handler发送信息， 根据3种情况跳转**
 ```java
@@ -58,6 +58,9 @@ private Handler mHandler = new Handler() {
 
 ## 在这个页面中使用到的类的包装
 [BaseActivity](https://baidu.com)
+
 [BaseCommonActivity](https://baidu.com)
+
 [SharePreference](https://baidu.com)
+
 [PackageUtil](https://baidu.com)
