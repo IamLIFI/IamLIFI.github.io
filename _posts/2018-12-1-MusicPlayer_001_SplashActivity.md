@@ -56,6 +56,27 @@ private Handler mHandler = new Handler() {
 
 ```
 
+## 页面全屏的方法
+```xml
+<!-- 在Mainifest文件中设置主题为NoActionBar，然后再style中隐藏标题栏和状态栏 -->
+<activity
+     android:name=".activity.SplashActivity"
+     android:theme="@style/AppTheme.NoActionBar">
+     <intent-filter>
+         <action android:name="android.intent.action.MAIN" />
+
+         <category android:name="android.intent.category.LAUNCHER" />
+     </intent-filter>
+ </activity>
+
+ <style name="AppTheme.NoActionBar">
+        <!-- 隐藏标题栏 -->
+        <item name="windowNoTitle">true</item>
+        <!-- 隐藏状态栏 -->
+        <item name="android:windowFullscreen">true</item>
+</style>
+```
+
 ## 在这个页面中使用到的类的包装
 [BaseActivity](https://iamlifi.github.io/2018/12/01/BaseActivity/)
 
