@@ -16,7 +16,7 @@ tags:                               #标签
 
 ## Splash Activity界面思路
 
-![pic1](https://github.com/IamLIFI/IamLIFI.github.io/blob/master/img/1.png)
+![pic1](https://github.com/IamLIFI/IamLIFI.github.io/blob/master/img/1.png?raw=true)
 
 延迟显示的方式：**使用handler发送信息， 根据3种情况跳转**
 ```java
