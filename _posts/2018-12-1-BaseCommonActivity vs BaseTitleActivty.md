@@ -1,6 +1,6 @@
 ---
 layout:     post                    # 使用的布局（不需要改）
-title:      BaseCommonActivty               # 标题
+title:      BaseCommonActivty vs BaseTitleActivty               # 标题
 subtitle:   仿网易云音乐项目包装的类 #副标题
 date:       2018-12-1           # 时间
 author:     IamLIFI                     # 作者
