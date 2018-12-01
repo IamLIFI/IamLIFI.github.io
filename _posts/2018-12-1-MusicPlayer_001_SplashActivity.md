@@ -80,7 +80,7 @@ private Handler mHandler = new Handler() {
 ## 在这个页面中使用到的类的包装
 [BaseActivity](https://iamlifi.github.io/2018/12/01/BaseActivity/)
 
-[BaseCommonActivity](https://baidu.com)
+[BaseCommonActivity](https://iamlifi.github.io/2018/12/01/BaseCommonActivity-vs-BaseTitleActivty/)
 
 [SharePreference](https://baidu.com)
 
