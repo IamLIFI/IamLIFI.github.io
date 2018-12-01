@@ -15,7 +15,7 @@ tags:                               #标签
 >[project](https://github.com/IamLIFI/android/tree/master/RewriteMusic)
 
 ## Splash Activity界面思路
-> 主要思路
+
 ![pic1](../img/1.png)
 
 延迟显示的方式：**使用handler发送信息， 根据3种情况跳转**
