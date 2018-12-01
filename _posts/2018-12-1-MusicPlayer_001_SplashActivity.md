@@ -64,7 +64,6 @@ private Handler mHandler = new Handler() {
      android:theme="@style/AppTheme.NoActionBar">
      <intent-filter>
          <action android:name="android.intent.action.MAIN" />
-
          <category android:name="android.intent.category.LAUNCHER" />
      </intent-filter>
  </activity>
@@ -82,6 +81,6 @@ private Handler mHandler = new Handler() {
 
 [BaseCommonActivity](https://iamlifi.github.io/2018/12/01/BaseCommonActivity-vs-BaseTitleActivty/)
 
-[SharePreference](https://baidu.com)
+[SharePreference](https://iamlifi.github.io/2018/12/01/SharedPreferencesUtil/)
 
-[PackageUtil](https://baidu.com)
+[PackageUtil](https://github.com/IamLIFI/android/blob/master/RewriteMusic/app/src/main/java/com/example/rewrite/utils/PackageUtil.java)
