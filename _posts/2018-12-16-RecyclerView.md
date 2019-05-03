@@ -219,17 +219,120 @@ mDivider.setDrawable(getResources().getDrawable(R.drawable.my_divider));
 mRecyclerView.addItemDecoration(mDivider);
 ```
 
-## RecyclerView.Adapter 的使用
+## RecyclerView.Adapter 的基本使用
 
 RecyclerView.Adapter，需要实现3个方法：
-- onCreateViewHolder()
-这个方法主要生成为每个`Item inflater`出一个`View`，但是该方法返回的是一个`ViewHolder`。<u>该方法把`View`直接封装在`ViewHolde`r中，然后我们面向的是ViewHolder这个实例</u>，当然这个ViewHolder需要我们自己去编写。直接省去了当初的convertView.setTag(holder)和convertView.getTag()这些繁琐的步骤。
-②onBindViewHolder()
-这个方法主要用于适配渲染数据到View中。方法提供给你了一个viewHolder，而不是原来的convertView。
-③getItemCount()
-这个方法就类似于BaseAdapter的getCount方法了，即总共有多少个条目。
-实例：接着来几个小的实例帮助大家更深入的了解RecyclerView的用法，首先来实现一个最简单的列表，效果如
+- `onCreateViewHolder`()
+这个方法主要生成为每个`Item inflater`出一个`View`，但是该方法返回的是一个`ViewHolder`。<u>该方法把`View`直接封装在`ViewHolde`r中，然后我们面向的是`ViewHolder`这个实例</u>，当然这个ViewHolder需要我们自己去编写。直接省去了当初的convertView.setTag(holder)和convertView.getTag()这些繁琐的步骤。
 
+- `onBindViewHolder`()
+这个方法主要用于**适配渲染数据到View**中。<u>方法提供给你了一个viewHolder，而不是原来的convertView。</u>
+
+- `getItemCount`()
+这个方法就类似于BaseAdapter的getCount方法了，即总共有多少个条目。一般在创建Adater的时候就会 传入或者通过add方法加入数据
+
+### 创建Adapter
+
+- MyRecyclerAdapter.java
+
+  一般来说会有多个Adapter所以创建一个虚基类。
+```java
+abstract  class MyRecyclerAdapter<VH extends MyRecyclerAdapter.MyViewHolder> extends  RecyclerView.Adapter<VH> {
+
+        List<String> mDatas;
+        Context mContext;
+        LayoutInflater inflater;
+
+        public MyRecyclerAdapter(Context context, List<String> datas){
+            this.mContext=context;
+            this.mDatas=datas;
+            inflater=LayoutInflater. from(mContext);
+        }
+
+        @Override
+        public void onBindViewHolder(@NonNull VH holder, int position) {
+            holder.tv.setText(mDatas.get(position));
+        }
+
+        @Override
+        public int getItemCount() {
+            return mDatas.size();
+        }
+
+        class MyViewHolder extends RecyclerView.ViewHolder{
+            TextView tv;
+
+            public MyViewHolder(View view) {
+                super(view);
+                tv=(TextView) view.findViewById(R.id.test_tv);
+            }
+
+        }
+
+    }
+```
+- TestRvAdapter.java
+
+  继承自虚基类然后实例化一个具体的item 布局
+```java
+class TestRvAdapter extends MyRecyclerAdapter<TestRvAdapter.TestViewHolder> {
+
+    public TestRvAdapter(Context context, List<String> datas) {
+        super(context, datas);
+    }
+
+    @NonNull
+    @Override
+    public TestViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = inflater.inflate(R.layout.test_rv_item, parent, false);
+        TestViewHolder testViewHolder = new TestViewHolder(view);
+        return testViewHolder;
+    }
+
+    class TestViewHolder extends MyRecyclerAdapter.MyViewHolder{
+
+        public TestViewHolder(View view) {
+            super(view);
+        }
+    }
+}
+```
+
+- 在主函数里面使用
+```java  
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+      super.onCreate(savedInstanceState);
+      setContentView(R.layout.activity_test);
+      initRV();
+}
+void initRV() {
+      RecyclerView rv = findViewById(R.id.rv);
+      final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+      rv.setLayoutManager(linearLayoutManager);
+      linearLayoutManager.setOrientation(OrientationHelper.VERTICAL);
+      List<String> list = new ArrayList<>();
+      for (int i = 0; i < 10; i++) {
+          list.add(i + "");
+      }
+      TestRvAdapter testRvAdapter = new TestRvAdapter(this, list);
+      rv.setAdapter(testRvAdapter);
+      CommonItemDecoration commonItemDecoration = new CommonItemDecoration(this, LinearLayout.VERTICAL);
+      commonItemDecoration.setDrawable(getResources().getDrawable(R.drawable.my_divider2));
+      rv.addItemDecoration(commonItemDecoration);
+      rv.setItemAnimator( new DefaultItemAnimator());
+    }
+```
 
 
 ## RecyclerView 的布局
+
+RecyclerView.LayoutManager是一个抽象类，系统为我们提供了三个实现类.
+- `LinearLayoutManager`即线性布局，这个是在上面的例子中我们用到的布局.
+- `GridLayoutManager`即表格布局
+- `StaggeredGridLayoutManager`即流式布局.
+
+#### LinearLayoutManager
+这个布局上面的例子就是
+
+#### GridLayoutManager
